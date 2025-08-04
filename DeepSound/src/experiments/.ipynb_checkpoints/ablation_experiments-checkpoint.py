@@ -1,315 +1,446 @@
 import logging
-import os
-import tensorflow as tf
-import absl.logging
-from datetime import datetime
-import numpy as np
 
-from models.deep_sound import DeepSound
-from models import ablation_models as am  # 假设包含DeepSound的消融变体
-from data.make_dataset import main
-from experiments.base import Experiment, PredictionExperiment
-from features.feature_factories import FeatureFactory_RawAudioData
-from experiments.settings import random_seed
+from chewbite_fusion.models import ablation_models as am
+from chewbite_fusion.models import deep_fusion_feature_level as dffl
+from chewbite_fusion.data.make_dataset import main
+from chewbite_fusion.experiments.base import Experiment, PredictionExperiment
+from chewbite_fusion.features import feature_factories as ff
+
 from yaer.base import experiment
 
 
-# ==================== 日志配置 ====================
-def setup_logging():
-    os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
-    tf.get_logger().setLevel("ERROR")
-    absl.logging.set_verbosity(absl.logging.ERROR)
-    
-    log_dir = "experiment_logs"
-    os.makedirs(log_dir, exist_ok=True)
-    
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    log_file = f"{log_dir}/deepsound_ablation_log_{timestamp}.txt"
-    
-    logging.getLogger().handlers = []
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s - %(levelname)s - %(message)s",
-        handlers=[
-            logging.FileHandler(log_file),
-            logging.StreamHandler()
-        ]
-    )
-    
-    tf_logger = logging.getLogger("tensorflow")
-    tf_logger.setLevel(logging.ERROR)
-    tf_logger.propagate = False
-    
-    return logging.getLogger('yaer')
-
-logger = setup_logging()
+logger = logging.getLogger('yaer')
 
 
-# ==================== 模型工厂函数（仅音频相关消融） ====================
-def get_base_model(variable_params):
-    """基础模型（原始DeepSound）"""
-    return DeepSound(
-        input_size=variable_params['input_size_audio'],
+def get_model_A_instance(variable_params):
+    return am.DeepFusionAblationA(
+        input_size_audio=variable_params['input_size_audio'],
         output_size=6,
         n_epochs=1500,
         batch_size=10,
         training_reshape=True,
         set_sample_weights=True,
-        feature_scaling=True
-    )
+        feature_scaling=True)
 
-def get_no_rnn_model(variable_params):
-    """消融RNN层的变体"""
-    return am.DeepSoundAblationNoRNN(  # 假设存在该消融模型
-        input_size=variable_params['input_size_audio'],
+def get_model_B_instance(variable_params):
+    return am.DeepFusionAblationB(
+        input_size_acc=variable_params['input_size_acc'],
+        input_size_gyr=variable_params['input_size_gyr'],
         output_size=6,
         n_epochs=1500,
         batch_size=10,
         training_reshape=True,
         set_sample_weights=True,
-        feature_scaling=True
-    )
+        feature_scaling=True)
 
-def get_smaller_conv_model(variable_params):
-    """缩减卷积层数量的变体"""
-    return am.DeepSoundAblationSmallConv(  # 假设存在该消融模型
-        input_size=variable_params['input_size_audio'],
+def get_model_B_a_instance(variable_params):
+    return am.DeepFusionAblationB_a(
+        input_size_acc=variable_params['input_size_acc'],
         output_size=6,
         n_epochs=1500,
         batch_size=10,
         training_reshape=True,
         set_sample_weights=True,
-        feature_scaling=True
-    )
+        feature_scaling=True)
 
-def get_no_batchnorm_model(variable_params):
-    """移除批归一化层的变体"""
-    return am.DeepSoundAblationNoBatchNorm(  # 假设存在该消融模型
-        input_size=variable_params['input_size_audio'],
+def get_model_B_b_instance(variable_params):
+    return am.DeepFusionAblationB(
+        input_size_gyr=variable_params['input_size_gyr'],
         output_size=6,
         n_epochs=1500,
         batch_size=10,
         training_reshape=True,
         set_sample_weights=True,
-        feature_scaling=True
-    )
+        feature_scaling=True)
+
+def get_model_C_instance(variable_params):
+    return am.DeepFusionAblationC(
+        input_size_acc=variable_params['input_size_acc'],
+        input_size_gyr=variable_params['input_size_gyr'],
+        input_size_audio=variable_params['input_size_sound'],
+        output_size=6,
+        n_epochs=1500,
+        batch_size=10,
+        training_reshape=True,
+        set_sample_weights=True,
+        feature_scaling=True)
+
+def get_model_C_a_instance(variable_params):
+    return am.DeepFusionAblationC(
+        input_size_acc=variable_params['input_size_acc'],
+        input_size_audio=variable_params['input_size_sound'],
+        output_size=6,
+        n_epochs=1500,
+        batch_size=10,
+        training_reshape=True,
+        set_sample_weights=True,
+        feature_scaling=True)
+
+def get_model_C_b_instance(variable_params):
+    return am.DeepFusionAblationC(
+        input_size_gyr=variable_params['input_size_gyr'],
+        input_size_audio=variable_params['input_size_sound'],
+        output_size=6,
+        n_epochs=1500,
+        batch_size=10,
+        training_reshape=True,
+        set_sample_weights=True,
+        feature_scaling=True)
+
+def get_model_D_instance(variable_params):
+    return am.DeepFusionAblationD(
+        input_size_acc=variable_params['input_size_acc'],
+        input_size_gyr=variable_params['input_size_gyr'],
+        input_size_audio=variable_params['input_size_sound'],
+        output_size=6,
+        n_epochs=1500,
+        batch_size=10,
+        training_reshape=True,
+        set_sample_weights=True,
+        feature_scaling=True)
+
+def get_model_E_instance(variable_params):
+    return dffl.DeepFusionFeatureLevel_m7(
+        input_size_acc=variable_params['input_size_acc'],
+        input_size_gyr=variable_params['input_size_gyr'],
+        input_size_audio=variable_params['input_size_audio'],
+        output_size=6,
+        n_epochs=1500,
+        batch_size=10,
+        training_reshape=True,
+        set_sample_weights=True,
+        feature_scaling=True)
 
 
-# ==================== 实验定义（仅音频相关消融） ====================
 @experiment()
-def deepsound_base_validation():
-    """基础模型验证实验"""
-    logger.info("===== 开始执行 deepsound_base_validation 实验 =====")
-    logger.info(f"随机种子: {random_seed}")
-
+def ablation_model_A_validation():
+    """ Experiment with sound head on validation data.
+    """
     window_width = 0.3
     window_overlap = 0.5
-    try:
-        # 仅加载音频数据（禁用IMU）
-        X, y = main(
-            data_source_names=['jaw_movements2020'],
-            window_width=window_width,
-            window_overlap=window_overlap,
-            include_movement_magnitudes=False,  # 关键：不包含IMU数据
-            audio_sampling_frequency=6000,
-            invalidate_cache=True
-        )
-    except Exception as e:
-        logger.error(f"数据加载失败: {str(e)}", exc_info=True)
-        return
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
 
-    e = Experiment(
-        get_base_model,
-        FeatureFactory_RawAudioData,  # 仅使用音频特征工厂
-        X, y,
-        window_width=window_width,
-        window_overlap=window_overlap,
-        name='deepsound_base_validation',
-        manage_sequences=True,
-        use_raw_data=True,
-        model_parameters_grid={'input_size_audio': [1800]}  # 与DeepSound保持一致
-    )
+    e = Experiment(get_model_A_instance,
+                   ff.FeatureFactory_AllRawData,
+                   X, y,
+                   window_width=window_width,
+                   window_overlap=window_overlap,
+                   name='ablation_model_A_validation',
+                   manage_sequences=True,
+                   use_raw_data=True,
+                   model_parameters_grid={'input_size_audio': [(None, 1800, 1)]})
 
     e.run()
-    logger.info("===== deepsound_base_validation 实验完成 =====")
 
 
 @experiment()
-def deepsound_no_rnn_validation():
-    """消融RNN层的验证实验"""
-    logger.info("===== 开始执行 deepsound_no_rnn_validation 实验 =====")
-
+def ablation_model_B_validation():
+    """ Experiment with IMU heads on validation data.
+    """
     window_width = 0.3
     window_overlap = 0.5
-    try:
-        X, y = main(
-            data_source_names=['jaw_movements2020'],
-            window_width=window_width,
-            window_overlap=window_overlap,
-            include_movement_magnitudes=False,
-            audio_sampling_frequency=6000,
-            invalidate_cache=True
-        )
-    except Exception as e:
-        logger.error(f"数据加载失败: {str(e)}", exc_info=True)
-        return
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
 
-    e = Experiment(
-        get_no_rnn_model,
-        FeatureFactory_RawAudioData,
-        X, y,
-        window_width=window_width,
-        window_overlap=window_overlap,
-        name='deepsound_no_rnn_validation',
-        manage_sequences=True,
-        use_raw_data=True,
-        model_parameters_grid={'input_size_audio': [1800]}
-    )
+    e = Experiment(get_model_B_instance,
+                   ff.FeatureFactory_AllRawData,
+                   X, y,
+                   window_width=window_width,
+                   window_overlap=window_overlap,
+                   name='ablation_model_B_validation',
+                   manage_sequences=True,
+                   use_raw_data=True,
+                   model_parameters_grid={'input_size_acc': [(None, 30, 3)],
+                                          'input_size_gyr': [(None, 30, 3)]})
 
     e.run()
-    logger.info("===== deepsound_no_rnn_validation 实验完成 =====")
-
-
+    
 @experiment()
-def deepsound_smaller_conv_validation():
-    """缩减卷积层的验证实验"""
-    logger.info("===== 开始执行 deepsound_smaller_conv_validation 实验 =====")
-
+def ablation_model_B_a_validation():
+    """ Experiment with acc head on validation data.
+    """
     window_width = 0.3
     window_overlap = 0.5
-    try:
-        X, y = main(
-            data_source_names=['jaw_movements2020'],
-            window_width=window_width,
-            window_overlap=window_overlap,
-            include_movement_magnitudes=False,
-            audio_sampling_frequency=6000,
-            invalidate_cache=True
-        )
-    except Exception as e:
-        logger.error(f"数据加载失败: {str(e)}", exc_info=True)
-        return
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
 
-    e = Experiment(
-        get_smaller_conv_model,
-        FeatureFactory_RawAudioData,
-        X, y,
-        window_width=window_width,
-        window_overlap=window_overlap,
-        name='deepsound_smaller_conv_validation',
-        manage_sequences=True,
-        use_raw_data=True,
-        model_parameters_grid={'input_size_audio': [1800]}
-    )
+    e = Experiment(get_model_B_a_instance,
+                   ff.FeatureFactory_AllRawData,
+                   X, y,
+                   window_width=window_width,
+                   window_overlap=window_overlap,
+                   name='ablation_model_B_a_validation',
+                   manage_sequences=True,
+                   use_raw_data=True,
+                   model_parameters_grid={'input_size_acc': [(None, 30, 3)]})
 
     e.run()
-    logger.info("===== deepsound_smaller_conv_validation 实验完成 =====")
 
 
 @experiment()
-def deepsound_no_batchnorm_validation():
-    """移除批归一化的验证实验"""
-    logger.info("===== 开始执行 deepsound_no_batchnorm_validation 实验 =====")
-
+def ablation_model_B_b_validation():
+    """ Experiment with gyr head on validation data.
+    """
     window_width = 0.3
     window_overlap = 0.5
-    try:
-        X, y = main(
-            data_source_names=['jaw_movements2020'],
-            window_width=window_width,
-            window_overlap=window_overlap,
-            include_movement_magnitudes=False,
-            audio_sampling_frequency=6000,
-            invalidate_cache=True
-        )
-    except Exception as e:
-        logger.error(f"数据加载失败: {str(e)}", exc_info=True)
-        return
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
 
-    e = Experiment(
-        get_no_batchnorm_model,
-        FeatureFactory_RawAudioData,
-        X, y,
-        window_width=window_width,
-        window_overlap=window_overlap,
-        name='deepsound_no_batchnorm_validation',
-        manage_sequences=True,
-        use_raw_data=True,
-        model_parameters_grid={'input_size_audio': [1800]}
-    )
+    e = Experiment(get_model_B_b_instance,
+                   ff.FeatureFactory_AllRawData,
+                   X, y,
+                   window_width=window_width,
+                   window_overlap=window_overlap,
+                   name='ablation_model_B_b_validation',
+                   manage_sequences=True,
+                   use_raw_data=True,
+                   model_parameters_grid={'input_size_gyr': [(None, 30, 3)]})
 
     e.run()
-    logger.info("===== deepsound_no_batchnorm_validation 实验完成 =====")
 
 
-# ==================== 测试集实验 ====================
 @experiment()
-def deepsound_base_test():
-    """基础模型测试实验"""
-    logger.info("===== 开始执行 deepsound_base_test 实验 =====")
-
+def ablation_model_C_validation():
+    """ Experiment without RNN on validation data.
+    """
     window_width = 0.3
     window_overlap = 0.5
-    try:
-        X, y = main(
-            data_source_names=['jaw_movements2020'],
-            window_width=window_width,
-            window_overlap=window_overlap,
-            include_movement_magnitudes=False,
-            audio_sampling_frequency=6000,
-            invalidate_cache=True
-        )
-    except Exception as e:
-        logger.error(f"数据加载失败: {str(e)}", exc_info=True)
-        return
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
+
+    e = Experiment(get_model_C_instance,
+                   ff.FeatureFactory_AllRawData,
+                   X, y,
+                   window_width=window_width,
+                   window_overlap=window_overlap,
+                   name='ablation_model_C_validation',
+                   manage_sequences=True,
+                   use_raw_data=True,
+                   model_parameters_grid={'input_size_acc': [(None, 30, 3)],
+                                          'input_size_gyr': [(None, 30, 3)],
+                                          'input_size_sound': [(None, 1800, 1)]})
+
+    e.run()
+
+
+@experiment()
+def ablation_model_D_validation():
+    """ Experiment without dense layers on validation data.
+    """
+    window_width = 0.3
+    window_overlap = 0.5
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
+
+    e = Experiment(get_model_D_instance,
+                   ff.FeatureFactory_AllRawData,
+                   X, y,
+                   window_width=window_width,
+                   window_overlap=window_overlap,
+                   name='ablation_model_D_validation',
+                   manage_sequences=True,
+                   use_raw_data=True,
+                   model_parameters_grid={'input_size_acc': [(None, 30, 3)],
+                                          'input_size_gyr': [(None, 30, 3)],
+                                          'input_size_sound': [(None, 1800, 1)]})
+
+    e.run()
+
+
+@experiment()
+def ablation_model_A_test():
+    """ Experiment with sound head on test data.
+    """
+    window_width = 0.3
+    window_overlap = 0.5
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
 
     e = PredictionExperiment(
-        get_base_model,
-        FeatureFactory_RawAudioData,
+        get_model_A_instance,
+        ff.FeatureFactory_AllRawData,
         X, y,
         window_width=window_width,
         window_overlap=window_overlap,
-        name='deepsound_base_test',
+        name='ablation_model_A_test',
         manage_sequences=True,
         use_raw_data=True,
-        model_parameters_grid={'input_size_audio': [1800]}
+        model_parameters_grid={'input_size_audio': [(None, 1800, 1)]}
     )
 
     e.run()
-    logger.info("===== deepsound_base_test 实验完成 =====")
 
 
 @experiment()
-def deepsound_no_rnn_test():
-    """消融RNN层的测试实验"""
-    logger.info("===== 开始执行 deepsound_no_rnn_test 实验 =====")
-
+def ablation_model_B_test():
+    """ Experiment with IMU heads on test data.
+    """
     window_width = 0.3
     window_overlap = 0.5
-    try:
-        X, y = main(
-            data_source_names=['jaw_movements2020'],
-            window_width=window_width,
-            window_overlap=window_overlap,
-            include_movement_magnitudes=False,
-            audio_sampling_frequency=6000,
-            invalidate_cache=True
-        )
-    except Exception as e:
-        logger.error(f"数据加载失败: {str(e)}", exc_info=True)
-        return
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
 
     e = PredictionExperiment(
-        get_no_rnn_model,
-        FeatureFactory_RawAudioData,
+        get_model_B_instance,
+        ff.FeatureFactory_AllRawData,
         X, y,
         window_width=window_width,
         window_overlap=window_overlap,
-        name='deepsound_no_rnn_test',
+        name='ablation_model_B_test',
         manage_sequences=True,
         use_raw_data=True,
-        model_parameters_grid={'input_size_audio': [1800]}
+        model_parameters_grid={'input_size_acc': [(None, 30, 3)],
+                               'input_size_gyr': [(None, 30, 3)]}
     )
 
     e.run()
-    logger.info("===== deepsound_no_rnn_test 实验完成 =====")
+
+
+@experiment()
+def ablation_model_B_a_test():
+    """ Experiment with acc head on test data.
+    """
+    window_width = 0.3
+    window_overlap = 0.5
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
+
+    e = PredictionExperiment(
+        get_model_B_a_instance,
+        ff.FeatureFactory_AllRawData,
+        X, y,
+        window_width=window_width,
+        window_overlap=window_overlap,
+        name='ablation_model_B_a_test',
+        manage_sequences=True,
+        use_raw_data=True,
+        model_parameters_grid={'input_size_acc': [(None, 30, 3)]}
+    )
+
+    e.run()
+
+
+@experiment()
+def ablation_model_B_b_test():
+    """ Experiment with gyr head on test data.
+    """
+    window_width = 0.3
+    window_overlap = 0.5
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
+
+    e = PredictionExperiment(
+        get_model_B_b_instance,
+        ff.FeatureFactory_AllRawData,
+        X, y,
+        window_width=window_width,
+        window_overlap=window_overlap,
+        name='ablation_model_B_b_test',
+        manage_sequences=True,
+        use_raw_data=True,
+        model_parameters_grid={'input_size_gyr': [(None, 30, 3)]}
+    )
+
+    e.run()
+
+
+@experiment()
+def ablation_model_C_test():
+    """ Experiment without RNN on test data.
+    """
+    window_width = 0.3
+    window_overlap = 0.5
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
+
+    e = PredictionExperiment(
+        get_model_C_instance,
+        ff.FeatureFactory_AllRawData,
+        X, y,
+        window_width=window_width,
+        window_overlap=window_overlap,
+        name='ablation_model_C_test',
+        manage_sequences=True,
+        use_raw_data=True,
+        model_parameters_grid={'input_size_acc': [(None, 30, 3)],
+                               'input_size_gyr': [(None, 30, 3)],
+                               'input_size_sound': [(None, 1800, 1)]})
+
+    e.run()
+
+
+@experiment()
+def ablation_model_D_test():
+    """ Experiment without dense layers on test data.
+    """
+    window_width = 0.3
+    window_overlap = 0.5
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
+
+    e = PredictionExperiment(
+        get_model_D_instance,
+        ff.FeatureFactory_AllRawData,
+        X, y,
+        window_width=window_width,
+        window_overlap=window_overlap,
+        name='ablation_model_D_test',
+        manage_sequences=True,
+        use_raw_data=True,
+        model_parameters_grid={'input_size_acc': [(None, 30, 3)],
+                               'input_size_gyr': [(None, 30, 3)],
+                               'input_size_sound': [(None, 1800, 1)]})
+
+    e.run()
+
+
+@experiment()
+def ablation_model_E_test():
+    """ Experiment proposed model on test dataset.
+    """
+    window_width = 0.3
+    window_overlap = 0.5
+    X, y = main(window_width=window_width,
+                window_overlap=window_overlap,
+                include_movement_magnitudes=True,
+                audio_sampling_frequency=6000)
+
+    e = PredictionExperiment(
+        get_model_E_instance,
+        ff.FeatureFactory_AllRawData,
+        X, y,
+        window_width=window_width,
+        window_overlap=window_overlap,
+        name='ablation_model_E_test',
+        manage_sequences=True,
+        use_raw_data=True,
+        model_parameters_grid={'input_size_acc': [(None, 30, 3)],
+                               'input_size_gyr': [(None, 30, 3)],
+                               'input_size_audio': [(None, 1800, 1)]})
+
+    e.run()

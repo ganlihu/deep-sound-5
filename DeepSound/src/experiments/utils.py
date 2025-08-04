@@ -7,8 +7,8 @@ import dcase_util
 import numpy as np
 import tensorflow as tf
 
-from experiments import settings
-from experiments.settings import random_seed
+from chewbite_fusion.experiments import settings
+from chewbite_fusion.experiments.settings import random_seed
 
 
 def set_random_init():
