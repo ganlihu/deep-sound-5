@@ -1,0 +1,543 @@
+2025-08-04 10:20:02,092 - INFO - ===== 开始执行deep_sound实验 =====
+2025-08-04 10:20:02,092 - INFO - 实验随机种子: 24
+2025-08-04 10:20:02,092 - INFO - 训练轮次: 1500
+2025-08-04 10:20:02,093 - INFO - 日志保存路径: experiment_logs/
+2025-08-04 10:20:02,093 - INFO - 训练结果路径: training_results/
+2025-08-04 10:20:02,093 - INFO - 模型保存路径: trained_models/
+2025-08-04 10:20:02,095 - INFO - *** 从头创建数据集 ***
+2025-08-04 10:20:02,096 - INFO - 可用数据集: ['zavalla2022', 'jaw_movements2020']
+2025-08-04 10:20:02,097 - INFO - 为数据集 jaw_movements2020 找到 52 个音频-标签文件对
+2025-08-04 10:20:02,108 - INFO - 成功加载特征文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/features.csv，共 3038 条记录
+2025-08-04 10:20:02,109 - INFO - > 处理片段: recording_01
+2025-08-04 10:20:02,109 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_01.wav
+2025-08-04 10:20:02,109 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_01.txt
+2025-08-04 10:20:03,851 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 260205样本
+2025-08-04 10:20:03,853 - INFO -   标签加载完成: 47 条事件
+2025-08-04 10:20:03,854 - INFO -   生成音频窗口: 288 个，窗口大小: (1800,)
+2025-08-04 10:20:04,035 - INFO -   生成标签窗口: 288 个
+2025-08-04 10:20:04,036 - INFO -   整合 47 条特征到片段 recording_01
+2025-08-04 10:20:04,095 - INFO - > 处理片段: recording_02
+2025-08-04 10:20:04,095 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_02.wav
+2025-08-04 10:20:04,095 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_02.txt
+2025-08-04 10:20:04,110 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 205476样本
+2025-08-04 10:20:04,112 - INFO -   标签加载完成: 34 条事件
+2025-08-04 10:20:04,113 - INFO -   生成音频窗口: 227 个，窗口大小: (1800,)
+2025-08-04 10:20:04,252 - INFO -   生成标签窗口: 227 个
+2025-08-04 10:20:04,253 - INFO -   整合 34 条特征到片段 recording_02
+2025-08-04 10:20:04,298 - INFO - > 处理片段: recording_03
+2025-08-04 10:20:04,298 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_03.wav
+2025-08-04 10:20:04,298 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_03.txt
+2025-08-04 10:20:04,327 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 344359样本
+2025-08-04 10:20:04,329 - INFO -   标签加载完成: 62 条事件
+2025-08-04 10:20:04,330 - INFO -   生成音频窗口: 381 个，窗口大小: (1800,)
+2025-08-04 10:20:04,570 - INFO -   生成标签窗口: 381 个
+2025-08-04 10:20:04,571 - INFO -   整合 62 条特征到片段 recording_03
+2025-08-04 10:20:04,653 - INFO - > 处理片段: recording_04
+2025-08-04 10:20:04,653 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_04.wav
+2025-08-04 10:20:04,653 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_04.txt
+2025-08-04 10:20:04,676 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 386958样本
+2025-08-04 10:20:04,679 - INFO -   标签加载完成: 72 条事件
+2025-08-04 10:20:04,680 - INFO -   生成音频窗口: 428 个，窗口大小: (1800,)
+2025-08-04 10:20:04,947 - INFO -   生成标签窗口: 428 个
+2025-08-04 10:20:04,948 - INFO -   整合 72 条特征到片段 recording_04
+2025-08-04 10:20:05,036 - INFO - > 处理片段: recording_05
+2025-08-04 10:20:05,036 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_05.wav
+2025-08-04 10:20:05,036 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_05.txt
+2025-08-04 10:20:05,061 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 384708样本
+2025-08-04 10:20:05,064 - INFO -   标签加载完成: 64 条事件
+2025-08-04 10:20:05,066 - INFO -   生成音频窗口: 426 个，窗口大小: (1800,)
+2025-08-04 10:20:05,350 - INFO -   生成标签窗口: 426 个
+2025-08-04 10:20:05,351 - INFO -   整合 64 条特征到片段 recording_05
+2025-08-04 10:20:05,438 - INFO - > 处理片段: recording_06
+2025-08-04 10:20:05,438 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_06.wav
+2025-08-04 10:20:05,439 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_06.txt
+2025-08-04 10:20:05,460 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 366890样本
+2025-08-04 10:20:05,463 - INFO -   标签加载完成: 66 条事件
+2025-08-04 10:20:05,464 - INFO -   生成音频窗口: 406 个，窗口大小: (1800,)
+2025-08-04 10:20:05,715 - INFO -   生成标签窗口: 406 个
+2025-08-04 10:20:05,716 - INFO -   整合 66 条特征到片段 recording_06
+2025-08-04 10:20:05,799 - INFO - > 处理片段: recording_07
+2025-08-04 10:20:05,799 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_07.wav
+2025-08-04 10:20:05,799 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_07.txt
+2025-08-04 10:20:05,834 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 465519样本
+2025-08-04 10:20:05,836 - INFO -   标签加载完成: 82 条事件
+2025-08-04 10:20:05,837 - INFO -   生成音频窗口: 516 个，窗口大小: (1800,)
+2025-08-04 10:20:06,152 - INFO -   生成标签窗口: 516 个
+2025-08-04 10:20:06,152 - INFO -   整合 82 条特征到片段 recording_07
+2025-08-04 10:20:06,258 - INFO - > 处理片段: recording_08
+2025-08-04 10:20:06,258 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_08.wav
+2025-08-04 10:20:06,258 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_08.txt
+2025-08-04 10:20:06,266 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 114057样本
+2025-08-04 10:20:06,268 - INFO -   标签加载完成: 10 条事件
+2025-08-04 10:20:06,269 - INFO -   生成音频窗口: 125 个，窗口大小: (1800,)
+2025-08-04 10:20:06,342 - INFO -   生成标签窗口: 125 个
+2025-08-04 10:20:06,344 - INFO -   整合 10 条特征到片段 recording_08
+2025-08-04 10:20:06,369 - INFO - > 处理片段: recording_09
+2025-08-04 10:20:06,369 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_09.wav
+2025-08-04 10:20:06,369 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_09.txt
+2025-08-04 10:20:06,387 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 292633样本
+2025-08-04 10:20:06,390 - INFO -   标签加载完成: 54 条事件
+2025-08-04 10:20:06,391 - INFO -   生成音频窗口: 324 个，窗口大小: (1800,)
+2025-08-04 10:20:06,591 - INFO -   生成标签窗口: 324 个
+2025-08-04 10:20:06,592 - INFO -   整合 54 条特征到片段 recording_09
+2025-08-04 10:20:06,660 - INFO - > 处理片段: recording_10
+2025-08-04 10:20:06,660 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_10.wav
+2025-08-04 10:20:06,660 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_10.txt
+2025-08-04 10:20:06,672 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 182791样本
+2025-08-04 10:20:06,674 - INFO -   标签加载完成: 26 条事件
+2025-08-04 10:20:06,675 - INFO -   生成音频窗口: 202 个，窗口大小: (1800,)
+2025-08-04 10:20:06,798 - INFO -   生成标签窗口: 202 个
+2025-08-04 10:20:06,799 - INFO -   整合 26 条特征到片段 recording_10
+2025-08-04 10:20:06,858 - INFO - > 处理片段: recording_11
+2025-08-04 10:20:06,858 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_11.wav
+2025-08-04 10:20:06,858 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_11.txt
+2025-08-04 10:20:06,869 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 124603样本
+2025-08-04 10:20:06,873 - INFO -   标签加载完成: 21 条事件
+2025-08-04 10:20:06,874 - INFO -   生成音频窗口: 137 个，窗口大小: (1800,)
+2025-08-04 10:20:06,962 - INFO -   生成标签窗口: 137 个
+2025-08-04 10:20:06,963 - INFO -   整合 21 条特征到片段 recording_11
+2025-08-04 10:20:06,990 - INFO - > 处理片段: recording_12
+2025-08-04 10:20:06,991 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_12.wav
+2025-08-04 10:20:06,991 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_12.txt
+2025-08-04 10:20:07,008 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 249893样本
+2025-08-04 10:20:07,009 - INFO -   标签加载完成: 43 条事件
+2025-08-04 10:20:07,010 - INFO -   生成音频窗口: 276 个，窗口大小: (1800,)
+2025-08-04 10:20:07,182 - INFO -   生成标签窗口: 276 个
+2025-08-04 10:20:07,183 - INFO -   整合 43 条特征到片段 recording_12
+2025-08-04 10:20:07,240 - INFO - > 处理片段: recording_13
+2025-08-04 10:20:07,240 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_13.wav
+2025-08-04 10:20:07,240 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_13.txt
+2025-08-04 10:20:07,270 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 376224样本
+2025-08-04 10:20:07,272 - INFO -   标签加载完成: 56 条事件
+2025-08-04 10:20:07,273 - INFO -   生成音频窗口: 417 个，窗口大小: (1800,)
+2025-08-04 10:20:07,529 - INFO -   生成标签窗口: 417 个
+2025-08-04 10:20:07,530 - INFO -   整合 56 条特征到片段 recording_13
+2025-08-04 10:20:07,617 - INFO - > 处理片段: recording_14
+2025-08-04 10:20:07,618 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_14.wav
+2025-08-04 10:20:07,618 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_14.txt
+2025-08-04 10:20:07,645 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 410799样本
+2025-08-04 10:20:07,648 - INFO -   标签加载完成: 74 条事件
+2025-08-04 10:20:07,649 - INFO -   生成音频窗口: 455 个，窗口大小: (1800,)
+2025-08-04 10:20:07,939 - INFO -   生成标签窗口: 455 个
+2025-08-04 10:20:07,940 - INFO -   整合 74 条特征到片段 recording_14
+2025-08-04 10:20:08,027 - INFO - > 处理片段: recording_15
+2025-08-04 10:20:08,027 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_15.wav
+2025-08-04 10:20:08,027 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_15.txt
+2025-08-04 10:20:08,037 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 161298样本
+2025-08-04 10:20:08,039 - INFO -   标签加载完成: 28 条事件
+2025-08-04 10:20:08,041 - INFO -   生成音频窗口: 178 个，窗口大小: (1800,)
+2025-08-04 10:20:08,155 - INFO -   生成标签窗口: 178 个
+2025-08-04 10:20:08,156 - INFO -   整合 28 条特征到片段 recording_15
+2025-08-04 10:20:08,191 - INFO - > 处理片段: recording_16
+2025-08-04 10:20:08,191 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_16.wav
+2025-08-04 10:20:08,192 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_16.txt
+2025-08-04 10:20:08,216 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 402734样本
+2025-08-04 10:20:08,218 - INFO -   标签加载完成: 67 条事件
+2025-08-04 10:20:08,219 - INFO -   生成音频窗口: 446 个，窗口大小: (1800,)
+2025-08-04 10:20:08,483 - INFO -   生成标签窗口: 446 个
+2025-08-04 10:20:08,484 - INFO -   整合 67 条特征到片段 recording_16
+2025-08-04 10:20:08,569 - INFO - > 处理片段: recording_17
+2025-08-04 10:20:08,570 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_17.wav
+2025-08-04 10:20:08,570 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_17.txt
+2025-08-04 10:20:08,599 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 467538样本
+2025-08-04 10:20:08,601 - INFO -   标签加载完成: 80 条事件
+2025-08-04 10:20:08,602 - INFO -   生成音频窗口: 518 个，窗口大小: (1800,)
+2025-08-04 10:20:08,928 - INFO -   生成标签窗口: 518 个
+2025-08-04 10:20:08,929 - INFO -   整合 80 条特征到片段 recording_17
+2025-08-04 10:20:09,038 - INFO - > 处理片段: recording_18
+2025-08-04 10:20:09,038 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_18.wav
+2025-08-04 10:20:09,038 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_18.txt
+2025-08-04 10:20:09,054 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 253072样本
+2025-08-04 10:20:09,057 - INFO -   标签加载完成: 34 条事件
+2025-08-04 10:20:09,058 - INFO -   生成音频窗口: 280 个，窗口大小: (1800,)
+2025-08-04 10:20:09,228 - INFO -   生成标签窗口: 280 个
+2025-08-04 10:20:09,229 - INFO -   整合 34 条特征到片段 recording_18
+2025-08-04 10:20:09,285 - INFO - > 处理片段: recording_19
+2025-08-04 10:20:09,285 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_19.wav
+2025-08-04 10:20:09,285 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_19.txt
+2025-08-04 10:20:09,331 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 752593样本
+2025-08-04 10:20:09,333 - INFO -   标签加载完成: 78 条事件
+2025-08-04 10:20:09,334 - INFO -   生成音频窗口: 835 个，窗口大小: (1800,)
+2025-08-04 10:20:09,822 - INFO -   生成标签窗口: 835 个
+2025-08-04 10:20:09,823 - INFO -   整合 78 条特征到片段 recording_19
+2025-08-04 10:20:10,002 - INFO - > 处理片段: recording_20
+2025-08-04 10:20:10,002 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_20.wav
+2025-08-04 10:20:10,002 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_20.txt
+2025-08-04 10:20:10,010 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 130539样本
+2025-08-04 10:20:10,013 - INFO -   标签加载完成: 22 条事件
+2025-08-04 10:20:10,014 - INFO -   生成音频窗口: 144 个，窗口大小: (1800,)
+2025-08-04 10:20:10,102 - INFO -   生成标签窗口: 144 个
+2025-08-04 10:20:10,104 - INFO -   整合 22 条特征到片段 recording_20
+2025-08-04 10:20:10,132 - INFO - > 处理片段: recording_21
+2025-08-04 10:20:10,132 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_21.wav
+2025-08-04 10:20:10,132 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_21.txt
+2025-08-04 10:20:10,187 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 912999样本
+2025-08-04 10:20:10,189 - INFO -   标签加载完成: 95 条事件
+2025-08-04 10:20:10,191 - INFO -   生成音频窗口: 1013 个，窗口大小: (1800,)
+2025-08-04 10:20:10,751 - INFO -   生成标签窗口: 1013 个
+2025-08-04 10:20:10,752 - INFO -   整合 95 条特征到片段 recording_21
+2025-08-04 10:20:10,959 - INFO - > 处理片段: recording_22
+2025-08-04 10:20:10,959 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_22.wav
+2025-08-04 10:20:10,959 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_22.txt
+2025-08-04 10:20:10,972 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 215433样本
+2025-08-04 10:20:10,974 - INFO -   标签加载完成: 36 条事件
+2025-08-04 10:20:10,975 - INFO -   生成音频窗口: 238 个，窗口大小: (1800,)
+2025-08-04 10:20:11,123 - INFO -   生成标签窗口: 238 个
+2025-08-04 10:20:11,124 - INFO -   整合 36 条特征到片段 recording_22
+2025-08-04 10:20:11,171 - INFO - > 处理片段: recording_23
+2025-08-04 10:20:11,171 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_23.wav
+2025-08-04 10:20:11,171 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_23.txt
+2025-08-04 10:20:11,192 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 302909样本
+2025-08-04 10:20:11,195 - INFO -   标签加载完成: 57 条事件
+2025-08-04 10:20:11,197 - INFO -   生成音频窗口: 335 个，窗口大小: (1800,)
+2025-08-04 10:20:11,535 - INFO -   生成标签窗口: 335 个
+2025-08-04 10:20:11,537 - INFO -   整合 57 条特征到片段 recording_23
+2025-08-04 10:20:11,601 - INFO - > 处理片段: recording_24
+2025-08-04 10:20:11,601 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_24.wav
+2025-08-04 10:20:11,601 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_24.txt
+2025-08-04 10:20:11,643 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 643640样本
+2025-08-04 10:20:11,645 - INFO -   标签加载完成: 55 条事件
+2025-08-04 10:20:11,646 - INFO -   生成音频窗口: 714 个，窗口大小: (1800,)
+2025-08-04 10:20:12,048 - INFO -   生成标签窗口: 714 个
+2025-08-04 10:20:12,049 - INFO -   整合 55 条特征到片段 recording_24
+2025-08-04 10:20:12,198 - INFO - > 处理片段: recording_25
+2025-08-04 10:20:12,199 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_25.wav
+2025-08-04 10:20:12,199 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_25.txt
+2025-08-04 10:20:12,223 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 428408样本
+2025-08-04 10:20:12,225 - INFO -   标签加载完成: 68 条事件
+2025-08-04 10:20:12,226 - INFO -   生成音频窗口: 475 个，窗口大小: (1800,)
+2025-08-04 10:20:12,519 - INFO -   生成标签窗口: 475 个
+2025-08-04 10:20:12,520 - INFO -   整合 68 条特征到片段 recording_25
+2025-08-04 10:20:12,618 - INFO - > 处理片段: recording_26
+2025-08-04 10:20:12,619 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_26.wav
+2025-08-04 10:20:12,619 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_26.txt
+2025-08-04 10:20:12,636 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 271929样本
+2025-08-04 10:20:12,638 - INFO -   标签加载完成: 36 条事件
+2025-08-04 10:20:12,639 - INFO -   生成音频窗口: 301 个，窗口大小: (1800,)
+2025-08-04 10:20:12,831 - INFO -   生成标签窗口: 301 个
+2025-08-04 10:20:12,832 - INFO -   整合 36 条特征到片段 recording_26
+2025-08-04 10:20:12,891 - INFO - > 处理片段: recording_27
+2025-08-04 10:20:12,891 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_27.wav
+2025-08-04 10:20:12,891 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_27.txt
+2025-08-04 10:20:12,913 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 317562样本
+2025-08-04 10:20:12,916 - INFO -   标签加载完成: 26 条事件
+2025-08-04 10:20:12,918 - INFO -   生成音频窗口: 351 个，窗口大小: (1800,)
+2025-08-04 10:20:13,170 - INFO -   生成标签窗口: 351 个
+2025-08-04 10:20:13,171 - INFO -   整合 26 条特征到片段 recording_27
+2025-08-04 10:20:13,243 - INFO - > 处理片段: recording_28
+2025-08-04 10:20:13,243 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_28.wav
+2025-08-04 10:20:13,243 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_28.txt
+2025-08-04 10:20:13,264 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 344909样本
+2025-08-04 10:20:13,266 - INFO -   标签加载完成: 55 条事件
+2025-08-04 10:20:13,267 - INFO -   生成音频窗口: 382 个，窗口大小: (1800,)
+2025-08-04 10:20:13,501 - INFO -   生成标签窗口: 382 个
+2025-08-04 10:20:13,502 - INFO -   整合 55 条特征到片段 recording_28
+2025-08-04 10:20:13,577 - INFO - > 处理片段: recording_29
+2025-08-04 10:20:13,578 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_29.wav
+2025-08-04 10:20:13,578 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_29.txt
+2025-08-04 10:20:13,612 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 573042样本
+2025-08-04 10:20:13,614 - INFO -   标签加载完成: 101 条事件
+2025-08-04 10:20:13,615 - INFO -   生成音频窗口: 635 个，窗口大小: (1800,)
+2025-08-04 10:20:14,026 - INFO -   生成标签窗口: 635 个
+2025-08-04 10:20:14,027 - INFO -   整合 101 条特征到片段 recording_29
+2025-08-04 10:20:14,158 - INFO - > 处理片段: recording_30
+2025-08-04 10:20:14,158 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_30.wav
+2025-08-04 10:20:14,158 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_30.txt
+2025-08-04 10:20:14,175 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 304698样本
+2025-08-04 10:20:14,177 - INFO -   标签加载完成: 48 条事件
+2025-08-04 10:20:14,178 - INFO -   生成音频窗口: 337 个，窗口大小: (1800,)
+2025-08-04 10:20:14,387 - INFO -   生成标签窗口: 337 个
+2025-08-04 10:20:14,388 - INFO -   整合 48 条特征到片段 recording_30
+2025-08-04 10:20:14,451 - INFO - > 处理片段: recording_31
+2025-08-04 10:20:14,452 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_31.wav
+2025-08-04 10:20:14,452 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_31.txt
+2025-08-04 10:20:14,485 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 484476样本
+2025-08-04 10:20:14,487 - INFO -   标签加载完成: 82 条事件
+2025-08-04 10:20:14,488 - INFO -   生成音频窗口: 537 个，窗口大小: (1800,)
+2025-08-04 10:20:14,824 - INFO -   生成标签窗口: 537 个
+2025-08-04 10:20:14,825 - INFO -   整合 82 条特征到片段 recording_31
+2025-08-04 10:20:14,930 - INFO - > 处理片段: recording_32
+2025-08-04 10:20:14,930 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_32.wav
+2025-08-04 10:20:14,930 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_32.txt
+2025-08-04 10:20:14,950 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 313843样本
+2025-08-04 10:20:14,953 - INFO -   标签加载完成: 52 条事件
+2025-08-04 10:20:14,954 - INFO -   生成音频窗口: 347 个，窗口大小: (1800,)
+2025-08-04 10:20:15,179 - INFO -   生成标签窗口: 347 个
+2025-08-04 10:20:15,180 - INFO -   整合 52 条特征到片段 recording_32
+2025-08-04 10:20:15,251 - INFO - > 处理片段: recording_33
+2025-08-04 10:20:15,251 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_33.wav
+2025-08-04 10:20:15,251 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_33.txt
+2025-08-04 10:20:15,270 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 327281样本
+2025-08-04 10:20:15,272 - INFO -   标签加载完成: 57 条事件
+2025-08-04 10:20:15,273 - INFO -   生成音频窗口: 362 个，窗口大小: (1800,)
+2025-08-04 10:20:15,494 - INFO -   生成标签窗口: 362 个
+2025-08-04 10:20:15,496 - INFO -   整合 57 条特征到片段 recording_33
+2025-08-04 10:20:15,565 - INFO - > 处理片段: recording_34
+2025-08-04 10:20:15,565 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_34.wav
+2025-08-04 10:20:15,565 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_34.txt
+2025-08-04 10:20:15,585 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 320520样本
+2025-08-04 10:20:15,588 - INFO -   标签加载完成: 57 条事件
+2025-08-04 10:20:15,589 - INFO -   生成音频窗口: 355 个，窗口大小: (1800,)
+2025-08-04 10:20:15,811 - INFO -   生成标签窗口: 355 个
+2025-08-04 10:20:15,812 - INFO -   整合 57 条特征到片段 recording_34
+2025-08-04 10:20:15,881 - INFO - > 处理片段: recording_35
+2025-08-04 10:20:15,881 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_35.wav
+2025-08-04 10:20:15,881 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_35.txt
+2025-08-04 10:20:15,892 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 174490样本
+2025-08-04 10:20:15,894 - INFO -   标签加载完成: 28 条事件
+2025-08-04 10:20:15,895 - INFO -   生成音频窗口: 192 个，窗口大小: (1800,)
+2025-08-04 10:20:16,014 - INFO -   生成标签窗口: 192 个
+2025-08-04 10:20:16,015 - INFO -   整合 28 条特征到片段 recording_35
+2025-08-04 10:20:16,052 - INFO - > 处理片段: recording_36
+2025-08-04 10:20:16,052 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_36.wav
+2025-08-04 10:20:16,052 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_36.txt
+2025-08-04 10:20:16,079 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 417368样本
+2025-08-04 10:20:16,081 - INFO -   标签加载完成: 68 条事件
+2025-08-04 10:20:16,082 - INFO -   生成音频窗口: 462 个，窗口大小: (1800,)
+2025-08-04 10:20:16,378 - INFO -   生成标签窗口: 462 个
+2025-08-04 10:20:16,379 - INFO -   整合 68 条特征到片段 recording_36
+2025-08-04 10:20:16,475 - INFO - > 处理片段: recording_37
+2025-08-04 10:20:16,475 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_37.wav
+2025-08-04 10:20:16,475 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_37.txt
+2025-08-04 10:20:16,498 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 348314样本
+2025-08-04 10:20:16,501 - INFO -   标签加载完成: 63 条事件
+2025-08-04 10:20:16,503 - INFO -   生成音频窗口: 386 个，窗口大小: (1800,)
+2025-08-04 10:20:16,902 - INFO -   生成标签窗口: 386 个
+2025-08-04 10:20:16,904 - INFO -   整合 63 条特征到片段 recording_37
+2025-08-04 10:20:16,981 - INFO - > 处理片段: recording_38
+2025-08-04 10:20:16,981 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_38.wav
+2025-08-04 10:20:16,981 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_38.txt
+2025-08-04 10:20:17,023 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 707122样本
+2025-08-04 10:20:17,025 - INFO -   标签加载完成: 64 条事件
+2025-08-04 10:20:17,026 - INFO -   生成音频窗口: 784 个，窗口大小: (1800,)
+2025-08-04 10:20:17,475 - INFO -   生成标签窗口: 784 个
+2025-08-04 10:20:17,476 - INFO -   整合 64 条特征到片段 recording_38
+2025-08-04 10:20:17,627 - INFO - > 处理片段: recording_39
+2025-08-04 10:20:17,627 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_39.wav
+2025-08-04 10:20:17,627 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_39.txt
+2025-08-04 10:20:17,655 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 432489样本
+2025-08-04 10:20:17,657 - INFO -   标签加载完成: 80 条事件
+2025-08-04 10:20:17,659 - INFO -   生成音频窗口: 479 个，窗口大小: (1800,)
+2025-08-04 10:20:18,149 - INFO -   生成标签窗口: 479 个
+2025-08-04 10:20:18,150 - INFO -   整合 80 条特征到片段 recording_39
+2025-08-04 10:20:18,243 - INFO - > 处理片段: recording_40
+2025-08-04 10:20:18,244 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_40.wav
+2025-08-04 10:20:18,244 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_40.txt
+2025-08-04 10:20:18,264 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 352362样本
+2025-08-04 10:20:18,266 - INFO -   标签加载完成: 65 条事件
+2025-08-04 10:20:18,267 - INFO -   生成音频窗口: 390 个，窗口大小: (1800,)
+2025-08-04 10:20:18,508 - INFO -   生成标签窗口: 390 个
+2025-08-04 10:20:18,509 - INFO -   整合 65 条特征到片段 recording_40
+2025-08-04 10:20:18,584 - INFO - > 处理片段: recording_41
+2025-08-04 10:20:18,584 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_41.wav
+2025-08-04 10:20:18,584 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_41.txt
+2025-08-04 10:20:18,616 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 497045样本
+2025-08-04 10:20:18,619 - INFO -   标签加载完成: 87 条事件
+2025-08-04 10:20:18,620 - INFO -   生成音频窗口: 551 个，窗口大小: (1800,)
+2025-08-04 10:20:18,952 - INFO -   生成标签窗口: 551 个
+2025-08-04 10:20:18,953 - INFO -   整合 87 条特征到片段 recording_41
+2025-08-04 10:20:19,058 - INFO - > 处理片段: recording_42
+2025-08-04 10:20:19,058 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_42.wav
+2025-08-04 10:20:19,058 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_42.txt
+2025-08-04 10:20:19,074 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 245233样本
+2025-08-04 10:20:19,077 - INFO -   标签加载完成: 39 条事件
+2025-08-04 10:20:19,078 - INFO -   生成音频窗口: 271 个，窗口大小: (1800,)
+2025-08-04 10:20:19,345 - INFO -   生成标签窗口: 271 个
+2025-08-04 10:20:19,346 - INFO -   整合 39 条特征到片段 recording_42
+2025-08-04 10:20:19,398 - INFO - > 处理片段: recording_43
+2025-08-04 10:20:19,398 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_43.wav
+2025-08-04 10:20:19,398 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_43.txt
+2025-08-04 10:20:19,422 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 402429样本
+2025-08-04 10:20:19,424 - INFO -   标签加载完成: 68 条事件
+2025-08-04 10:20:19,425 - INFO -   生成音频窗口: 446 个，窗口大小: (1800,)
+2025-08-04 10:20:19,696 - INFO -   生成标签窗口: 446 个
+2025-08-04 10:20:19,697 - INFO -   整合 68 条特征到片段 recording_43
+2025-08-04 10:20:19,784 - INFO - > 处理片段: recording_44
+2025-08-04 10:20:19,784 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_44.wav
+2025-08-04 10:20:19,784 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_44.txt
+2025-08-04 10:20:19,814 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 486729样本
+2025-08-04 10:20:19,816 - INFO -   标签加载完成: 83 条事件
+2025-08-04 10:20:19,817 - INFO -   生成音频窗口: 539 个，窗口大小: (1800,)
+2025-08-04 10:20:20,154 - INFO -   生成标签窗口: 539 个
+2025-08-04 10:20:20,155 - INFO -   整合 83 条特征到片段 recording_44
+2025-08-04 10:20:20,259 - INFO - > 处理片段: recording_45
+2025-08-04 10:20:20,259 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_45.wav
+2025-08-04 10:20:20,260 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_45.txt
+2025-08-04 10:20:20,285 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 400329样本
+2025-08-04 10:20:20,289 - INFO -   标签加载完成: 72 条事件
+2025-08-04 10:20:20,291 - INFO -   生成音频窗口: 443 个，窗口大小: (1800,)
+2025-08-04 10:20:20,743 - INFO -   生成标签窗口: 443 个
+2025-08-04 10:20:20,744 - INFO -   整合 72 条特征到片段 recording_45
+2025-08-04 10:20:20,829 - INFO - > 处理片段: recording_46
+2025-08-04 10:20:20,829 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_46.wav
+2025-08-04 10:20:20,829 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_46.txt
+2025-08-04 10:20:20,842 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 182434样本
+2025-08-04 10:20:20,844 - INFO -   标签加载完成: 27 条事件
+2025-08-04 10:20:20,845 - INFO -   生成音频窗口: 201 个，窗口大小: (1800,)
+2025-08-04 10:20:20,968 - INFO -   生成标签窗口: 201 个
+2025-08-04 10:20:20,969 - INFO -   整合 27 条特征到片段 recording_46
+2025-08-04 10:20:21,008 - INFO - > 处理片段: recording_47
+2025-08-04 10:20:21,008 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_47.wav
+2025-08-04 10:20:21,008 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_47.txt
+2025-08-04 10:20:21,026 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 266377样本
+2025-08-04 10:20:21,028 - INFO -   标签加载完成: 45 条事件
+2025-08-04 10:20:21,029 - INFO -   生成音频窗口: 294 个，窗口大小: (1800,)
+2025-08-04 10:20:21,210 - INFO -   生成标签窗口: 294 个
+2025-08-04 10:20:21,211 - INFO -   整合 45 条特征到片段 recording_47
+2025-08-04 10:20:21,269 - INFO - > 处理片段: recording_48
+2025-08-04 10:20:21,269 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_48.wav
+2025-08-04 10:20:21,270 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_48.txt
+2025-08-04 10:20:21,284 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 208621样本
+2025-08-04 10:20:21,286 - INFO -   标签加载完成: 34 条事件
+2025-08-04 10:20:21,287 - INFO -   生成音频窗口: 230 个，窗口大小: (1800,)
+2025-08-04 10:20:21,427 - INFO -   生成标签窗口: 230 个
+2025-08-04 10:20:21,427 - INFO -   整合 34 条特征到片段 recording_48
+2025-08-04 10:20:21,471 - INFO - > 处理片段: recording_49
+2025-08-04 10:20:21,471 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_49.wav
+2025-08-04 10:20:21,471 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_49.txt
+2025-08-04 10:20:21,493 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 364344样本
+2025-08-04 10:20:21,495 - INFO -   标签加载完成: 57 条事件
+2025-08-04 10:20:21,496 - INFO -   生成音频窗口: 403 个，窗口大小: (1800,)
+2025-08-04 10:20:21,754 - INFO -   生成标签窗口: 403 个
+2025-08-04 10:20:21,755 - INFO -   整合 57 条特征到片段 recording_49
+2025-08-04 10:20:21,835 - INFO - > 处理片段: recording_50
+2025-08-04 10:20:21,835 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_50.wav
+2025-08-04 10:20:21,835 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_50.txt
+2025-08-04 10:20:21,875 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 628627样本
+2025-08-04 10:20:21,877 - INFO -   标签加载完成: 102 条事件
+2025-08-04 10:20:21,878 - INFO -   生成音频窗口: 697 个，窗口大小: (1800,)
+2025-08-04 10:20:22,309 - INFO -   生成标签窗口: 697 个
+2025-08-04 10:20:22,310 - INFO -   整合 102 条特征到片段 recording_50
+2025-08-04 10:20:22,447 - INFO - > 处理片段: recording_51
+2025-08-04 10:20:22,448 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_51.wav
+2025-08-04 10:20:22,448 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_51.txt
+2025-08-04 10:20:22,492 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 730286样本
+2025-08-04 10:20:22,495 - INFO -   标签加载完成: 95 条事件
+2025-08-04 10:20:22,496 - INFO -   生成音频窗口: 810 个，窗口大小: (1800,)
+2025-08-04 10:20:22,984 - INFO -   生成标签窗口: 810 个
+2025-08-04 10:20:22,985 - INFO -   整合 95 条特征到片段 recording_51
+2025-08-04 10:20:23,144 - INFO - > 处理片段: recording_52
+2025-08-04 10:20:23,145 - INFO -   音频文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/audios/recording_52.wav
+2025-08-04 10:20:23,145 - INFO -   标签文件: /root/user/DeepSound/DeepSound/data/raw/jm2020/labels/recording_52.txt
+2025-08-04 10:20:23,182 - INFO -   音频重采样: 22050Hz → 6000Hz，长度: 643537样本
+2025-08-04 10:20:23,185 - INFO -   标签加载完成: 116 条事件
+2025-08-04 10:20:23,186 - INFO -   生成音频窗口: 714 个，窗口大小: (1800,)
+2025-08-04 10:20:23,642 - INFO -   生成标签窗口: 714 个
+2025-08-04 10:20:23,643 - INFO -   整合 116 条特征到片段 recording_52
+2025-08-04 10:20:23,783 - INFO - 数据集 jaw_movements2020 处理完成: 52 个片段
+2025-08-04 10:20:24,629 - INFO - 实验目录已创建: deep_sound/20250804_102024
+2025-08-04 10:20:24,630 - INFO - 模型保存目录已创建: deep_sound/20250804_102024/trained_models
+2025-08-04 10:20:24,630 - INFO - 已设置随机种子: 24
+2025-08-04 10:20:24,630 - INFO - ===== 开始执行实验 =====
+2025-08-04 10:20:24,630 - INFO - 实验名称: deep_sound
+2025-08-04 10:20:24,631 - INFO - 窗口宽度: 0.3s, 重叠率: 0.5
+2025-08-04 10:20:24,631 - INFO - 是否使用原始数据: True
+2025-08-04 10:20:24,631 - INFO - 数据增强启用: False
+2025-08-04 10:20:24,631 - INFO - 交叉验证折数: 5, 总训练验证片段数: 24
+2025-08-04 10:20:24,631 - INFO - 参数网格搜索数量: 1
+2025-08-04 10:20:24,631 - INFO - 无网格搜索参数，使用默认参数
+2025-08-04 10:20:24,631 - INFO - 使用最优参数执行最终交叉验证...
+2025-08-04 10:20:24,631 - INFO - 
+===== 开始折 1 (序号: 1) =====
+2025-08-04 10:20:24,631 - INFO - 折 1 包含的片段: [45, 3, 23, 2, 17]
+2025-08-04 10:20:24,632 - INFO - 折 1 训练片段数: 18, 测试片段数: 5
+2025-08-04 10:20:24,632 - INFO - 折 1 训练数据构建完成: 样本数=18
+2025-08-04 10:20:28,202 - ERROR - 折 1 执行失败: Exception encountered when calling layer 'cnn_backbone' (type Sequential).
+
+Input 0 of layer "conv1d" is incompatible with the layer: expected axis -1 of input shape to have value 1800, but received input with shape (None, 1800, 1)
+
+Call arguments received by layer 'cnn_backbone' (type Sequential):
+  • inputs=tf.Tensor(shape=(None, 1800, 1), dtype=float32)
+  • training=None
+  • mask=None
+Traceback (most recent call last):
+  File "/root/user/DeepSound/DeepSound/src/experiments/base.py", line 214, in execute_kfoldcv
+    model = self.model_factory(parameters_combination)
+  File "/root/user/DeepSound/DeepSound/src/experiments/deep_sound.py", line 67, in model_factory
+    return DeepSound(
+  File "/root/user/DeepSound/DeepSound/src/models/deep_sound.py", line 238, in __init__
+    self.model = self._build_model()
+  File "/root/user/DeepSound/DeepSound/src/models/deep_sound.py", line 276, in _build_model
+    model = Sequential([
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/tensorflow/python/trackable/base.py", line 205, in _method_wrapper
+    result = method(self, *args, **kwargs)
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/keras/utils/traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/keras/engine/input_spec.py", line 280, in assert_input_compatibility
+    raise ValueError(
+ValueError: Exception encountered when calling layer 'cnn_backbone' (type Sequential).
+
+Input 0 of layer "conv1d" is incompatible with the layer: expected axis -1 of input shape to have value 1800, but received input with shape (None, 1800, 1)
+
+Call arguments received by layer 'cnn_backbone' (type Sequential):
+  • inputs=tf.Tensor(shape=(None, 1800, 1), dtype=float32)
+  • training=None
+  • mask=None
+2025-08-04 10:20:28,203 - ERROR - 实验执行失败: Exception encountered when calling layer 'cnn_backbone' (type Sequential).
+
+Input 0 of layer "conv1d" is incompatible with the layer: expected axis -1 of input shape to have value 1800, but received input with shape (None, 1800, 1)
+
+Call arguments received by layer 'cnn_backbone' (type Sequential):
+  • inputs=tf.Tensor(shape=(None, 1800, 1), dtype=float32)
+  • training=None
+  • mask=None
+Traceback (most recent call last):
+  File "/root/user/DeepSound/DeepSound/src/experiments/base.py", line 146, in run
+    self.execute_kfoldcv(
+  File "/root/user/DeepSound/DeepSound/src/experiments/base.py", line 214, in execute_kfoldcv
+    model = self.model_factory(parameters_combination)
+  File "/root/user/DeepSound/DeepSound/src/experiments/deep_sound.py", line 67, in model_factory
+    return DeepSound(
+  File "/root/user/DeepSound/DeepSound/src/models/deep_sound.py", line 238, in __init__
+    self.model = self._build_model()
+  File "/root/user/DeepSound/DeepSound/src/models/deep_sound.py", line 276, in _build_model
+    model = Sequential([
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/tensorflow/python/trackable/base.py", line 205, in _method_wrapper
+    result = method(self, *args, **kwargs)
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/keras/utils/traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/keras/engine/input_spec.py", line 280, in assert_input_compatibility
+    raise ValueError(
+ValueError: Exception encountered when calling layer 'cnn_backbone' (type Sequential).
+
+Input 0 of layer "conv1d" is incompatible with the layer: expected axis -1 of input shape to have value 1800, but received input with shape (None, 1800, 1)
+
+Call arguments received by layer 'cnn_backbone' (type Sequential):
+  • inputs=tf.Tensor(shape=(None, 1800, 1), dtype=float32)
+  • training=None
+  • mask=None
+2025-08-04 10:20:28,203 - ERROR - 实验运行失败: Exception encountered when calling layer 'cnn_backbone' (type Sequential).
+
+Input 0 of layer "conv1d" is incompatible with the layer: expected axis -1 of input shape to have value 1800, but received input with shape (None, 1800, 1)
+
+Call arguments received by layer 'cnn_backbone' (type Sequential):
+  • inputs=tf.Tensor(shape=(None, 1800, 1), dtype=float32)
+  • training=None
+  • mask=None
+Traceback (most recent call last):
+  File "/root/user/DeepSound/DeepSound/src/experiments/deep_sound.py", line 144, in deep_sound
+    experiment.run()  # 核心运行逻辑与原始一致
+  File "/root/user/DeepSound/DeepSound/src/experiments/base.py", line 146, in run
+    self.execute_kfoldcv(
+  File "/root/user/DeepSound/DeepSound/src/experiments/base.py", line 214, in execute_kfoldcv
+    model = self.model_factory(parameters_combination)
+  File "/root/user/DeepSound/DeepSound/src/experiments/deep_sound.py", line 67, in model_factory
+    return DeepSound(
+  File "/root/user/DeepSound/DeepSound/src/models/deep_sound.py", line 238, in __init__
+    self.model = self._build_model()
+  File "/root/user/DeepSound/DeepSound/src/models/deep_sound.py", line 276, in _build_model
+    model = Sequential([
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/tensorflow/python/trackable/base.py", line 205, in _method_wrapper
+    result = method(self, *args, **kwargs)
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/keras/utils/traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/keras/engine/input_spec.py", line 280, in assert_input_compatibility
+    raise ValueError(
+ValueError: Exception encountered when calling layer 'cnn_backbone' (type Sequential).
+
+Input 0 of layer "conv1d" is incompatible with the layer: expected axis -1 of input shape to have value 1800, but received input with shape (None, 1800, 1)
+
+Call arguments received by layer 'cnn_backbone' (type Sequential):
+  • inputs=tf.Tensor(shape=(None, 1800, 1), dtype=float32)
+  • training=None
+  • mask=None
