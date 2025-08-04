@@ -150,17 +150,26 @@ def main(data_source_names=['jaw_movements2020'],
             # 整合特征（如果存在features.csv）
             if features_df is not None:
                 try:
-                    # 假设features.csv中存在'segment'列对应片段名
-                    segment_features = features_df[features_df['segment'] == segment_name]
+                    # 关键修改：将基于'segment'的匹配改为'recording'
+                    segment_features = features_df[features_df['recording'] == segment_name]
                     if not segment_features.empty:
                         logger.info(f"  整合 {len(segment_features)} 条特征到片段 {segment_name}")
-                        # 这里可根据需要将特征合并到音频窗口（示例：简单拼接）
+                        # 合并特征到音频窗口
                         audio_windows = np.array([
                             np.concatenate([window, segment_features.iloc[0].values[1:]]) 
                             for window in audio_windows
                         ])
                 except Exception as e:
                     logger.warning(f"  特征整合失败: {str(e)}，将使用纯音频窗口")
+
+            # 关键修改：移除多余的最后一维，解决模型输入形状不匹配问题
+            try:
+                # 只在存在最后一维且维度为1时移除（避免破坏有效维度）
+                if audio_windows.ndim == 3 and audio_windows.shape[-1] == 1:
+                    audio_windows = np.squeeze(audio_windows, axis=-1)
+                    logger.info(f"  调整后音频窗口形状: {audio_windows[0].shape}")
+            except Exception as e:
+                logger.warning(f"  窗口形状调整失败: {str(e)}，将使用原始形状")
 
             # 保存到结果字典
             X_dataset_segments[segment_name] = audio_windows
@@ -257,31 +266,30 @@ def get_windows_labels(
                 event_duration = label.end - label.start
                 rel_overlap_event = overlap_duration / event_duration if event_duration > 0 else 0
                 rel_overlap_window = overlap_duration / window_width
+                overlaps.append({
+                    'label': label.jm_event,
+                    'rel_overlap_event': rel_overlap_event,
+                    'rel_overlap_window': rel_overlap_window,
+                    'index': idx
+                })
 
-                overlaps.append((
-                    -rel_overlap_window,  # 负号用于排序（从大到小）
-                    -rel_overlap_event,
-                    label.jm_event,
-                    idx
-                ))
+            # 筛选出满足重叠阈值的标签
+            valid_overlaps = [o for o in overlaps if o['rel_overlap_window'] >= label_overlapping_threshold]
+            if valid_overlaps:
+                # 选择与窗口重叠比例最大的标签
+                best_overlap = max(valid_overlaps, key=lambda x: x['rel_overlap_window'])
+                window_labels.append(best_overlap['label'])
+                labels.at[best_overlap['index'], 'used'] = True
+            else:
+                window_labels.append(no_event_class_name)
+        else:
+            window_labels.append(no_event_class_name)
 
-            # 按重叠比例排序，取最大的
-            overlaps.sort()
-            best_overlap = overlaps[0]
-            # 检查是否达到阈值
-            if (-best_overlap[0] >= label_overlapping_threshold) or (-best_overlap[1] >= 0.9):
-                window_labels.append(best_overlap[2])
-                labels.at[best_overlap[3], 'used'] = True
-                window_start = window_end
-                continue
+        window_start = window_end  # 移动到下一个窗口
 
-        # 无有效重叠标签
-        window_labels.append(no_event_class_name)
-        window_start = window_end
-
-    # 日志：统计未使用的标签
-    unused = labels[~labels['used']]
-    if not unused.empty:
-        logger.info(f"  有 {len(unused)} 条标签未匹配到任何窗口（可能在边缘）")
+    # 检查未使用的标签并记录警告
+    unused_labels = labels[labels['used'] == False]
+    if not unused_labels.empty:
+        logger.warning(f"  存在未匹配到窗口的标签: {len(unused_labels)} 条")
 
     return window_labels
