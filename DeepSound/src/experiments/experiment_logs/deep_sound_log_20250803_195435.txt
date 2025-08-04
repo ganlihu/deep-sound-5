@@ -1,0 +1,16 @@
+2025-08-03 19:54:35,852 - INFO - ===== 开始执行deep_sound实验 =====
+2025-08-03 19:54:35,852 - INFO - 实验随机种子: 24
+2025-08-03 19:54:35,852 - INFO - 训练轮次: 1500
+2025-08-03 19:54:35,852 - INFO - 日志保存路径: experiment_logs/
+2025-08-03 19:54:35,852 - INFO - 训练结果路径: training_results/
+2025-08-03 19:54:35,852 - INFO - 模型保存路径: trained_models/
+2025-08-03 19:54:35,855 - INFO - *** 从头创建数据集 ***
+2025-08-03 19:54:35,855 - INFO - 可用数据集: ['zavalla2022', 'jaw_movements2020']
+2025-08-03 19:54:35,855 - INFO - 为数据集 jaw_movements2020 找到 0 个音频-标签文件对
+2025-08-03 19:54:35,855 - ERROR - 数据加载失败: 数据集 jaw_movements2020 未找到任何文件，路径: /root/user/DeepSound/data/raw/jm2020
+Traceback (most recent call last):
+  File "/root/user/DeepSound/DeepSound/src/experiments/deep_sound.py", line 95, in deep_sound
+    data_tuple = main(
+  File "/root/user/DeepSound/DeepSound/src/data/make_dataset.py", line 67, in main
+    raise FileNotFoundError(f"数据集 {dataset_name} 未找到任何文件，路径: {dataset.folder}")
+FileNotFoundError: 数据集 jaw_movements2020 未找到任何文件，路径: /root/user/DeepSound/data/raw/jm2020
