@@ -2,7 +2,7 @@ from collections import namedtuple
 import os
 import glob
 
-from chewbite_fusion.data.settings import DATA_SOURCES_PATH
+from data.settings import DATA_SOURCES_PATH
 
 
 def list_datasets():

@@ -1,0 +1,24 @@
+2025-08-04 21:03:40 INFO     -------------------------
+2025-08-04 21:03:40 INFO     >>> Skipping grid search! No params dict provided. <<<
+2025-08-04 21:03:40 INFO     Running fold number 1.
+2025-08-04 21:03:40 INFO     Train fold keys: [].
+2025-08-04 21:03:40 ERROR    Experiment internal error !
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/yaer/runner.py", line 111, in run_experiments
+    run_experiment(name, exp, dumpers)
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/yaer/runner.py", line 33, in run_experiment
+    experiment(dumper=dumper)
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/yaer/base.py", line 46, in the_experiment
+    f(**new_params)
+  File "/root/user/DeepSound/DeepSound/src/experiments/.ipynb_checkpoints/deep_sound-checkpoint.py", line 45, in deep_sound
+    e.run()
+  File "/root/user/DeepSound/DeepSound/src/experiments/base.py", line 128, in run
+    self.execute_kfoldcv(
+  File "/root/user/DeepSound/DeepSound/src/experiments/base.py", line 221, in execute_kfoldcv
+    unique_labels = np.unique(np.hstack(y_train))
+  File "<__array_function__ internals>", line 180, in hstack
+  File "/root/miniconda3/envs/deep-sound/lib/python3.10/site-packages/numpy/core/shape_base.py", line 345, in hstack
+    return _nx.concatenate(arrs, 1)
+  File "<__array_function__ internals>", line 180, in concatenate
+ValueError: need at least one array to concatenate
+2025-08-04 21:03:40 INFO     ====================================================================================================

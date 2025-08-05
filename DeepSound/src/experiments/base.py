@@ -12,9 +12,9 @@ from sklearn.model_selection import ParameterGrid
 import sed_eval
 import dcase_util
 
-from chewbite_fusion.data.utils import windows2events
-from chewbite_fusion.experiments import settings
-from chewbite_fusion.experiments.utils import set_random_init
+from data.utils import windows2events
+from experiments import settings
+from experiments.utils import set_random_init
 
 
 logger = logging.getLogger('yaer')

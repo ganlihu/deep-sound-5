@@ -6,7 +6,7 @@ from datetime import datetime as dt
 
 import pandas as pd
 
-from chewbite_fusion.data.settings import CACHE_DIR
+from data.settings import CACHE_DIR
 
 logger = logging.getLogger(__name__)
 

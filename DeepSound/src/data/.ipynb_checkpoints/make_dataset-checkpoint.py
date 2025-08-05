@@ -8,8 +8,8 @@ from scipy import signal
 import librosa
 import more_itertools
 
-from chewbite_fusion.data.cache_manager import DatasetCache
-from chewbite_fusion.data import utils_data_sources as utils
+from data.cache_manager import DatasetCache
+from data import utils_data_sources as utils
 
 
 logger = logging.getLogger(__name__)

@@ -1,10 +1,10 @@
 import logging
 
-from chewbite_fusion.models.deep_sound import DeepSound
-from chewbite_fusion.experiments.settings import random_seed
-from chewbite_fusion.data.make_dataset import main
-from chewbite_fusion.experiments.base import Experiment
-from chewbite_fusion.features.feature_factories import FeatureFactory_RawAudioData
+from models.deep_sound import DeepSound
+from experiments.settings import random_seed
+from data.make_dataset import main
+from experiments.base import Experiment
+from features.feature_factories import FeatureFactory_RawAudioData
 
 from yaer.base import experiment
 
