@@ -32,6 +32,7 @@ def get_experiment_results(experiment_path, full=False):
 
     fold_metrics = []
 
+    # 同步更新标签列表以匹配jaw_movements2020数据集
     unique_labels = ['grazing-chew', 'rumination-chew', 'bite', 'chewbite']
 
     for _, fold in folds.items():
@@ -48,7 +49,7 @@ def get_experiment_results(experiment_path, full=False):
 
         data = []
 
-        # Get used event labels
+        # 获取使用的事件标签
         all_data = dcase_util.containers.MetaDataContainer()
         for file_pair in file_list:
             reference_event_list = sed_eval.io.load_event_list(
@@ -68,7 +69,7 @@ def get_experiment_results(experiment_path, full=False):
             t_collar=settings.collar_value
         )
 
-        # Go through files
+        # 遍历文件计算指标
         for file_pair in data:
             event_based_metrics.evaluate(
                 reference_event_list=file_pair['reference_event_list'],
